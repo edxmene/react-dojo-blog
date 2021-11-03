@@ -1,3 +1,7 @@
 #navbarTogglerDemo01 {
     margin-top: 10px;
 }
+
+nav.navbar div.container-fluid {
+    padding: 0;
+}
