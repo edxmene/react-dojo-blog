@@ -1,11 +1,10 @@
 import React from 'react'
-import BlogList from './BlogList'
+import BlogList from './BlogList/BlogList'
 
-const Home = ({data}) => {
+const Home = ({blogs,deleteBlog}) => {
     return (
         <div>
-            <BlogList data={data} title="All Blogs"/>
-            <BlogList data={data.filter((blog)=>blog.author === 'Mario')} title="Mario's Blog"/>
+            <BlogList blogs={blogs} title="All Blogs" deleteBlog={deleteBlog}/>
         </div>
     )
 }
