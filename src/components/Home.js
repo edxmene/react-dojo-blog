@@ -1,10 +1,13 @@
 import React from 'react'
 import BlogList from './BlogList/BlogList'
+import Spiner from './spiner/Spiner'
 
-const Home = ({blogs,deleteBlog}) => {
+
+const Home = ({blogs,deleteBlog,isLoading}) => {
     return (
         <div>
-            <BlogList blogs={blogs} title="All Blogs" deleteBlog={deleteBlog}/>
+            {isLoading && <Spiner />}
+            {blogs && <BlogList blogs={blogs} title="All Blogs" deleteBlog={deleteBlog}/>}
         </div>
     )
 }

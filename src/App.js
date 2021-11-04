@@ -9,15 +9,18 @@ const initialData = [
 ]
 
 function App() {
-  const [blogs,setBlogs] = useState(initialData);
+  const [blogs,setBlogs] = useState(null);
+  const [isLoading,setIsLoading] = useState(true);
 
   useEffect(()=>{
     getBlogs();
   },[])
+
   // const getBlogs = async () => {
   //   const url = 'https://jsonplaceholder.typicode.com/posts';
   //   const res = await fetch(url);
   //   const blogs = await res.json();
+  //   setIsLoading(false);
   //   setBlogs(blogs);
   // }
 
@@ -25,6 +28,7 @@ function App() {
     const url = 'http://localhost:8000/blogs';
     const res = await fetch(url);
     const blogs = await res.json();
+    setIsLoading(false);
     setBlogs(blogs);
   }
 
@@ -36,7 +40,7 @@ function App() {
   return (
     <div className="container-sm">
       <NavBar />
-      <Home blogs={blogs} deleteBlog={deleteBlog}/>
+      <Home blogs={blogs} deleteBlog={deleteBlog} isLoading={isLoading}/>
     </div>
   )
 }
