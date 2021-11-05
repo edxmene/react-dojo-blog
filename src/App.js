@@ -2,7 +2,7 @@ import Home from "./components/Home";
 import NavBar from "./components/navbar/NavBar";
 import useFetch from "./customHooks/useFetch";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Creater from "./components/Creater";
+import Creater from "./components/creater/Creater";
 import BlogDetails from "./components/BlogDetails";
 
 

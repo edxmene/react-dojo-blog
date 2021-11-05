@@ -16,6 +16,7 @@ const useFetch = (url) => {
     const [errorLoading,setErrorLoading] = useState(false);
 
     useEffect(()=>{
+        console.log('Calling useEffect from custom hook useFetch');
         const abortCont = new AbortController();
         getBlogs(url,abortCont)
         .then((blogs)=>{
