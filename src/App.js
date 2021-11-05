@@ -1,47 +1,37 @@
-import { useEffect, useState } from "react";
 import Home from "./components/Home";
 import NavBar from "./components/navbar/NavBar";
+import useFetch from "./customHooks/useFetch";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Creater from "./components/Creater";
+import BlogDetails from "./components/BlogDetails";
 
-const initialData = [
-  { title: 'My new website', body: 'lorem ipsum...', author: 'Mario', id: 1 },
-  { title: 'Welcome party!', body: 'lorem ipsum...', author: 'Yoshi', id: 2 },
-  { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'Mario', id: 3 }
-]
 
 function App() {
-  const [blogs,setBlogs] = useState(null);
-  const [isLoading,setIsLoading] = useState(true);
 
-  useEffect(()=>{
-    getBlogs();
-  },[])
+  const {data:blogs,isLoading,errorLoading} = useFetch("http://localhost:8000/blogs");
 
-  // const getBlogs = async () => {
-  //   const url = 'https://jsonplaceholder.typicode.com/posts';
-  //   const res = await fetch(url);
-  //   const blogs = await res.json();
-  //   setIsLoading(false);
-  //   setBlogs(blogs);
+  // const deleteBlog = (blogID) => {
+  //   const newBlog = data.filter((blog)=>blog.id !== blogID);
+  //   setBlogs(newBlog);
   // }
 
-  const getBlogs = async () => {
-    const url = 'http://localhost:8000/blogs';
-    const res = await fetch(url);
-    const blogs = await res.json();
-    setIsLoading(false);
-    setBlogs(blogs);
-  }
-
-  const deleteBlog = (blogID) => {
-    const newBlog = blogs.filter((blog)=>blog.id !== blogID);
-    setBlogs(newBlog);
-  }
-
   return (
-    <div className="container-sm">
-      <NavBar />
-      <Home blogs={blogs} deleteBlog={deleteBlog} isLoading={isLoading}/>
-    </div>
+    <Router>
+      <div className="container-sm">
+        <NavBar />
+        <Switch>
+          <Route exact path="/">
+            <Home blogs={blogs} isLoading={isLoading} errorLoading={errorLoading}/>
+          </Route>
+          <Route path="/create">
+            <Creater/>
+          </Route>
+          <Route path="/blogs/:id">
+            <BlogDetails/>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   )
 }
 

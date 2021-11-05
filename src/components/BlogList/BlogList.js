@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './BlogList.css'
 
-const BlogList = ({blogs,title,deleteBlog}) => {
+const BlogList = ({blogs,title}) => {
     return (
         <div>
             <h2>{title}</h2>
@@ -10,7 +11,9 @@ const BlogList = ({blogs,title,deleteBlog}) => {
                     <div key={blog.id} className="blog-list">
                         <h2 className="fs-4">{blog.title}</h2>
                         <p>Witten by user number {blog.userId}</p>
-                        <button type="button" className="btn btn-danger btn-sm" onClick={()=>deleteBlog(blog.id)}>Delete Blog</button>
+                        <Link to={`/blogs/${blog.id}`}>
+                            <button type="button" className="btn btn-info btn-sm">Blog Details</button>
+                        </Link>
                     </div>
                 ))}
             </ul>

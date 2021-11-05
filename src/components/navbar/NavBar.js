@@ -1,5 +1,6 @@
-import React from 'react'
+import {Link} from 'react-router-dom'
 import './navbar.css'
+
 
 const NavBar = () => {
     return (
@@ -10,13 +11,13 @@ const NavBar = () => {
             <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a className="navbar-brand" href="#">The Dojo Blog</a>
+                <Link className="navbar-brand" to="/">The Dojo Blog</Link>
                 <ul className="navbar-nav ms-auto">
                     <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">Home</a>
+                    <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">New Blog</a>
+                    <Link className="nav-link active" aria-current="page" to="/create">New Blog</Link>
                     </li>
                 </ul>  
             </div>
